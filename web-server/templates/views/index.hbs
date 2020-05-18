@@ -3,15 +3,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/styles.css">
-  <script src="./js/app.js"></script>
   <title>Rain Check</title>
   <link rel="icon" href="./assets/weather.png" type="image/x-icon">
 </head>
 <body>
   <div class="main-content">
-    {{> header }} 
+    {{> header }}
+
+    <p>Use this app to get your weather information!</p>
+    <p id="errorMessage"></p>
+
+    <form>
+      <input type="text" placeholder="Location" />
+      <button type="submit">Search</button>
+    </form>
+
+    <img id="forecastImage" src="" alt="">
+    <p id="locationMessage"></p>
+    <p id="forecastMessage"></p>
+    <p></p>
   </div>
 
   {{> footer }}
+  <script src="./js/app.js"></script>
 </body>
 </html>
