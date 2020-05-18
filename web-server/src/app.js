@@ -40,4 +40,20 @@ app.get('/help', (req,res) => {
   });
 });
 
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    title: 'Error',
+    errorMessage: 'Help topic not found.',
+    name: 'Andrei'
+  });
+});
+
+app.get('*', (req, res) => {
+  res.render('404', {
+    title: 'Error',
+    errorMessage: 'Page not found.',
+    name: 'Andrei'
+  });
+});
+
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
