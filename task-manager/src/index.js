@@ -12,5 +12,3 @@ app.use(userRouter);
 app.use(taskRouter);
 
 app.listen(port, () => console.log('Listening on port: ', port));
-
-const bcrypt = require('bcryptjs');
