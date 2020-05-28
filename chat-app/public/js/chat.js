@@ -12,7 +12,13 @@ chatForm.addEventListener('submit', e => {
   
   const message = e.target.elements.message.value;
   
-  socket.emit('sendMessage', message);
+  socket.emit('sendMessage', message, (error) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message Delivered!');
+    
+  });
 })
 
 sendLocationBtn.addEventListener('click', () => {
@@ -21,6 +27,9 @@ sendLocationBtn.addEventListener('click', () => {
   }
 
   navigator.geolocation.getCurrentPosition((position) => {
-    socket.emit('sendLocation', { lat: position.coords.latitude, long: position.coords.longitude});
+    const loc = { lat: position.coords.latitude, long: position.coords.longitude};
+    socket.emit('sendLocation', loc, () => {
+      console.log("Location shared");
+    });
   });
 });
