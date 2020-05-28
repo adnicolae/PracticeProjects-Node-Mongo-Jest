@@ -19,9 +19,18 @@ io.on('connection', (socket) => {
   console.log('New websocket connection');
 
   socket.emit('message', 'Welcome!');
+  socket.broadcast.emit('message', 'A new user has joined');
 
   socket.on('sendMessage', (message) => {
     io.emit('message', message);
+  });
+
+  socket.on('sendLocation', (location) => {
+    io.emit('message', `https://www.google.com/maps?q=${ location.lat },${ location.long }`)
+  })
+
+  socket.on('disconnect', () => {
+    io.emit('message', 'An user has left!')
   });
 });
 
