@@ -14,18 +14,20 @@ const urlTemplate = document.querySelector('#location-template').innerHTML;
 // Options
 const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true });
 
-socket.on('message', ({ text, createdAt}) => {
+socket.on('message', ({ username, text, createdAt}) => {
   console.log(text);
   const html = Mustache.render(messageTemplate, {
+    username,
     message: text,
     createdAt: moment(createdAt).format('HH:mm')
   });
   $messages.insertAdjacentHTML('beforeend', html);
 })
 
-socket.on('locationMessage', ({ url, createdAt}) => {
+socket.on('locationMessage', ({ username, url, createdAt}) => {
   console.log(url);
   const html = Mustache.render(urlTemplate, {
+    username,
     url,
     createdAt: moment(createdAt).format('HH:mm')
   });
